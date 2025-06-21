@@ -1,67 +1,60 @@
 import { Tabs } from 'expo-router';
-import { Platform } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { Search, Upload, FileText, User } from 'lucide-react-native';
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: Platform.select({
-          ios: {
-            position: 'absolute',
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
-            backdropFilter: 'blur(20px)',
-          },
-          default: {
-            backgroundColor: '#fff',
-          },
-        }),
-        tabBarActiveTintColor: '#000',
+        tabBarActiveTintColor: '#006A4E',
         tabBarInactiveTintColor: '#999',
+        tabBarStyle: {
+          backgroundColor: 'white',
+          borderTopColor: '#E0E0E0',
+          borderTopWidth: 1,
+          paddingTop: 8,
+          paddingBottom: 8,
+          height: 70,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontFamily: 'Inter-Medium',
+          marginTop: 4,
+        },
       }}>
       <Tabs.Screen
-        name="bank"
+        name="explore"
         options={{
-          title: 'Bank',
+          title: 'Explore',
           tabBarIcon: ({ color, focused }) => (
-            <FontAwesome name={focused ? 'bank' : 'bank'} size={24} color={color} />
+            <Search color={color} size={24} strokeWidth={focused ? 2.5 : 2} />
           ),
         }}
       />
       <Tabs.Screen
-        name="wallet"
+        name="lend"
         options={{
-          title: 'Wallet',
+          title: 'Lend',
           tabBarIcon: ({ color, focused }) => (
-            <FontAwesome name={focused ? 'credit-card' : 'credit-card-alt'} size={24} color={color} />
+            <Upload color={color} size={24} strokeWidth={focused ? 2.5 : 2} />
           ),
         }}
       />
       <Tabs.Screen
-        name="groups"
+        name="requests"
         options={{
-          title: 'Groups',
+          title: 'Requests',
           tabBarIcon: ({ color, focused }) => (
-            <FontAwesome name={focused ? 'users' : 'users'} size={24} color={color} />
+            <FileText color={color} size={24} strokeWidth={focused ? 2.5 : 2} />
           ),
         }}
       />
       <Tabs.Screen
-        name="messages"
+        name="profile"
         options={{
-          title: 'Messages',
+          title: 'Profile',
           tabBarIcon: ({ color, focused }) => (
-            <FontAwesome name={focused ? 'comments' : 'comments-o'} size={24} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="notifications"
-        options={{
-          title: 'Notifications',
-          tabBarIcon: ({ color, focused }) => (
-            <FontAwesome name={focused ? 'bell' : 'bell-o'} size={24} color={color} />
+            <User color={color} size={24} strokeWidth={focused ? 2.5 : 2} />
           ),
         }}
       />

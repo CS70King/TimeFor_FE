@@ -1,34 +1,30 @@
 import { useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, Text, StyleSheet, Image } from 'react-native';
+import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function Welcome() {
-  const router = useRouter();
+export default function WelcomeScreen() {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.replace('/(auth)/signup1');
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <View style={styles.header}>
-          <Text style={styles.logo}>Sena</Text>
-          <Text style={styles.tagline}>Your Community Savings Circle</Text>
+        <View style={styles.logoContainer}>
+          <View style={styles.logo}>
+            <Text style={styles.logoText}>TimeFor</Text>
+          </View>
+          <Text style={styles.tagline}>Pan-African Item Lending</Text>
+          <View style={styles.adinkraPattern}>
+            <Text style={styles.adinkraSymbol}>𝔸</Text>
+          </View>
         </View>
-        
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity 
-            style={styles.primaryButton}
-            onPress={() => router.push('/auth/signup/name')}
-          >
-            <Text style={styles.primaryButtonText}>Get Started</Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity 
-            style={styles.secondaryButton}
-            onPress={() => router.push('/auth/login/email')}
-          >
-            <Text style={styles.secondaryButtonText}>Sign In</Text>
-          </TouchableOpacity>
-        </View>
+        <Text style={styles.welcomeText}>Building Community Through Sharing</Text>
       </View>
     </SafeAreaView>
   );
@@ -37,56 +33,49 @@ export default function Welcome() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#006A4E',
   },
   content: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 40,
   },
-  header: {
+  logoContainer: {
     alignItems: 'center',
-    marginBottom: 80,
+    marginBottom: 40,
   },
   logo: {
-    fontSize: 48,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    paddingHorizontal: 30,
+    paddingVertical: 15,
+    marginBottom: 15,
+  },
+  logoText: {
+    fontSize: 32,
     fontFamily: 'Inter-Bold',
-    color: '#33b346',
-    marginBottom: 10,
+    color: '#006A4E',
   },
   tagline: {
+    fontSize: 16,
+    fontFamily: 'Inter-Medium',
+    color: 'white',
+    opacity: 0.9,
+  },
+  adinkraPattern: {
+    marginTop: 20,
+    opacity: 0.3,
+  },
+  adinkraSymbol: {
+    fontSize: 24,
+    color: 'white',
+  },
+  welcomeText: {
     fontSize: 18,
     fontFamily: 'Inter-Regular',
-    color: '#666',
+    color: 'white',
     textAlign: 'center',
-  },
-  buttonContainer: {
-    width: '100%',
-    gap: 16,
-  },
-  primaryButton: {
-    backgroundColor: '#33b346',
-    paddingVertical: 16,
-    borderRadius: 12,
-    alignItems: 'center',
-  },
-  primaryButtonText: {
-    fontSize: 18,
-    fontFamily: 'Inter-SemiBold',
-    color: '#fff',
-  },
-  secondaryButton: {
-    backgroundColor: 'transparent',
-    paddingVertical: 16,
-    borderRadius: 12,
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#33b346',
-  },
-  secondaryButtonText: {
-    fontSize: 18,
-    fontFamily: 'Inter-SemiBold',
-    color: '#33b346',
+    opacity: 0.8,
   },
 });
